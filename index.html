@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Malabar Pardhas | Coming Soon</title>
+
+  <style>
+    :root{
+      --bg:#5F0F20;       /* deep maroon */
+      --gold:#BD9B74;     /* antique gold */
+      --gold-soft:#D7BFA3;
+      --text:#F6EEE6;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+    }
+
+    body{
+      background:
+        radial-gradient(900px 600px at 20% 20%, rgba(189,155,116,.18), transparent 60%),
+        radial-gradient(800px 500px at 80% 80%, rgba(215,191,163,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg), #3b0712);
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:24px;
+    }
+
+    .wrap{
+      animation:fadeUp .8s ease both;
+    }
+
+    img{
+      max-width:280px;
+      width:100%;
+      margin-bottom:28px;
+      filter: drop-shadow(0 12px 35px rgba(0,0,0,.45));
+    }
+
+    h1{
+      font-size:clamp(28px,4vw,44px);
+      letter-spacing:.25em;
+      text-transform:uppercase;
+      margin:0 0 18px;
+      color:var(--gold-soft);
+    }
+
+    p{
+      margin:0;
+      font-size:14px;
+      color:rgba(246,238,230,.75);
+    }
+
+    a{
+      color:var(--gold);
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    a:hover{
+      text-decoration:underline;
+    }
+
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(14px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- Logo -->
+    <img src="logo.png" alt="Malabar Pardhas Logo" />
+
+    <!-- Coming Soon -->
+    <h1>Coming Soon</h1>
+
+    <!-- Credit -->
+    <p>
+      E-commerce is developing by
+      <a href="https://thetechcontractor.vercel.app/" target="_blank">
+        The Tech Contractor
+      </a>
+    </p>
+  </div>
+</body>
+</html>
