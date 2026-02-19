@@ -4,91 +4,249 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Malabar Pardhas | Coming Soon</title>
+
   <!-- ========================================= -->
-<!-- MALABAR PARDHAS FAVICON SETUP -->
-<!-- ========================================= -->
+  <!-- MALABAR PARDHAS FAVICON SETUP -->
+  <!-- ========================================= -->
+  <link rel="icon" type="image/png" sizes="32x32" href="https://malabarpardhas.vercel.app/logo.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://malabarpardhas.vercel.app/logo.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://malabarpardhas.vercel.app/logo.png">
+  <link rel="shortcut icon" href="https://malabarpardhas.vercel.app/logo.png">
+  <meta name="theme-color" content="#3b0712">
+  <meta name="msapplication-TileColor" content="#3b0712">
 
-<!-- Primary Favicon -->
-<link rel="icon" type="image/png" sizes="32x32" href="https://malabarpardhas.vercel.app/logo.png">
+  <!-- SEO (Premium + Minimal) -->
+  <meta name="description" content="Malabar Pardhas — premium women’s Islamic wear brand. Coming soon." />
+  <meta name="keywords" content="Malabar Pardhas, women Islamic wear, abaya, pardha, modest fashion, Kerala" />
 
-<!-- High Resolution Android Icon -->
-<link rel="icon" type="image/png" sizes="192x192" href="https://malabarpardhas.vercel.app/logo.png">
+  <!-- Social Share -->
+  <meta property="og:title" content="Malabar Pardhas | Coming Soon" />
+  <meta property="og:description" content="Premium women’s Islamic wear brand. Coming soon." />
+  <meta property="og:image" content="https://malabarpardhas.vercel.app/logo.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://malabarpardhas.vercel.app/logo.png" />
 
-<!-- Apple Touch Icon -->
-<link rel="apple-touch-icon" sizes="180x180" href="https://malabarpardhas.vercel.app/logo.png">
-
-<!-- Shortcut Icon -->
-<link rel="shortcut icon" href="https://malabarpardhas.vercel.app/logo.png">
-
-<!-- Theme Color -->
-<meta name="theme-color" content="#3b0712">
-
-<!-- Microsoft Tile Color -->
-<meta name="msapplication-TileColor" content="#3b0712">
-
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#5F0F20;       /* deep maroon */
-      --gold:#BD9B74;     /* antique gold */
-      --gold-soft:#D7BFA3;
+      --bg:#5F0F20;
+      --bg2:#3b0712;
+      --gold:#BD9B74;
+      --goldSoft:#D7BFA3;
       --text:#F6EEE6;
+      --muted: rgba(246,238,230,.72);
+      --border: rgba(215,191,163,.18);
+      --glass: rgba(255,255,255,.06);
+      --shadow: 0 30px 110px rgba(0,0,0,.55);
+      --radius: 26px;
     }
 
     *{box-sizing:border-box}
-    html,body{
-      height:100%;
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, sans-serif;
-    }
+    html,body{height:100%; margin:0}
 
     body{
-      background:
-        radial-gradient(900px 600px at 20% 20%, rgba(189,155,116,.18), transparent 60%),
-        radial-gradient(800px 500px at 80% 80%, rgba(215,191,163,.12), transparent 60%),
-        linear-gradient(180deg, var(--bg), #3b0712);
+      font-family: Inter, system-ui, -apple-system, sans-serif;
       color:var(--text);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
+      background:
+        radial-gradient(900px 600px at 18% 22%, rgba(189,155,116,.22), transparent 60%),
+        radial-gradient(900px 650px at 85% 75%, rgba(215,191,163,.12), transparent 65%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      display:grid;
+      place-items:center;
       padding:24px;
+      overflow:hidden;
     }
 
-    .wrap{
-      animation:fadeUp .8s ease both;
+    /* soft luxury grain */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-30%;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(215,191,163,.08), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(189,155,116,.08), transparent 40%);
+      filter: blur(0.3px);
+      pointer-events:none;
+      opacity:.85;
     }
 
-    img{
-      max-width:280px;
+    /* floating glow ornaments */
+    .orb{
+      position:fixed;
+      width:520px;
+      height:520px;
+      border-radius:999px;
+      background: radial-gradient(circle, rgba(189,155,116,.18), transparent 55%);
+      filter: blur(6px);
+      opacity:.7;
+      pointer-events:none;
+      animation: drift 12s ease-in-out infinite;
+    }
+    .orb.one{ top:-180px; left:-160px; }
+    .orb.two{ bottom:-220px; right:-200px; animation-duration: 14s; opacity:.55; }
+
+    @keyframes drift{
+      0%,100%{ transform: translate(0,0) }
+      50%{ transform: translate(18px, 22px) }
+    }
+
+    .card{
+      width:min(760px, 100%);
+      border-radius: var(--radius);
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.03));
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      padding: clamp(26px, 4vw, 44px);
+      text-align:center;
+      position:relative;
+      animation: fadeUp .85s ease both;
+    }
+
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(420px 240px at 18% 18%, rgba(215,191,163,.10), transparent 65%),
+        radial-gradient(420px 240px at 85% 90%, rgba(189,155,116,.10), transparent 65%);
+      pointer-events:none;
+    }
+
+    .inner{
+      position:relative;
+      z-index:1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:16px;
+    }
+
+    .logoWrap{
+      width:106px;
+      height:106px;
+      border-radius:24px;
+      border:1px solid rgba(215,191,163,.22);
+      background: rgba(0,0,0,.18);
+      display:grid;
+      place-items:center;
+      box-shadow: 0 18px 48px rgba(0,0,0,.38);
+      overflow:hidden;
+    }
+    .logoWrap img{
       width:100%;
-      margin-bottom:28px;
-      filter: drop-shadow(0 12px 35px rgba(0,0,0,.45));
+      height:100%;
+      object-fit:contain;
+      padding:12px;
+      filter: drop-shadow(0 10px 26px rgba(0,0,0,.35));
+    }
+
+    .brand{
+      font-family: Cinzel, serif;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color: var(--goldSoft);
+      font-weight:600;
+      font-size: 16px;
+      margin-top:2px;
+    }
+
+    .divider{
+      width:110px;
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(215,191,163,.55), transparent);
+      margin: 6px 0 2px;
     }
 
     h1{
-      font-size:clamp(28px,4vw,44px);
-      letter-spacing:.25em;
-      text-transform:uppercase;
-      margin:0 0 18px;
-      color:var(--gold-soft);
-    }
-
-    p{
       margin:0;
-      font-size:14px;
-      color:rgba(246,238,230,.75);
-    }
-
-    a{
-      color:var(--gold);
-      text-decoration:none;
+      font-family: Cinzel, serif;
       font-weight:600;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      font-size: clamp(28px, 4vw, 44px);
+      color: var(--goldSoft);
+      line-height:1.15;
     }
 
-    a:hover{
-      text-decoration:underline;
+    .sub{
+      margin:0;
+      max-width: 56ch;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.75;
     }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background: rgba(0,0,0,.16);
+      border:1px solid rgba(215,191,163,.18);
+      color: rgba(246,238,230,.78);
+      font-size: 12.5px;
+      letter-spacing:.02em;
+    }
+    .pill b{ color: var(--goldSoft); font-weight:700; }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+      margin-top: 10px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius: 14px;
+      font-weight:600;
+      font-size: 13.5px;
+      letter-spacing:.02em;
+      text-decoration:none;
+      border:1px solid rgba(215,191,163,.24);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(189,155,116,.96), rgba(189,155,116,.78));
+      color:#2a0a11;
+      border-color: rgba(255,255,255,.18);
+    }
+    .btn.ghost{
+      background: rgba(0,0,0,.16);
+      color: var(--text);
+    }
+
+    .btn svg{width:16px; height:16px}
+
+    .credit{
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top:1px solid rgba(215,191,163,.14);
+      color: rgba(246,238,230,.65);
+      font-size: 12.5px;
+    }
+    .credit a{
+      color: var(--gold);
+      text-decoration:none;
+      font-weight:700;
+    }
+    .credit a:hover{ text-decoration:underline; }
 
     @keyframes fadeUp{
       from{opacity:0; transform:translateY(14px)}
@@ -98,20 +256,60 @@
 </head>
 
 <body>
-  <div class="wrap">
-    <!-- Logo -->
-    <img src="logo.png" alt="Malabar Pardhas Logo" />
+  <div class="orb one" aria-hidden="true"></div>
+  <div class="orb two" aria-hidden="true"></div>
 
-    <!-- Coming Soon -->
-    <h1>Coming Soon</h1>
+  <main class="card" aria-label="Malabar Pardhas Coming Soon">
+    <div class="inner">
+      <!-- Logo -->
+      <div class="logoWrap">
+        <img src="logo.png" alt="Malabar Pardhas Logo" />
+      </div>
 
-    <!-- Credit -->
-    <p>
-      E-commerce is developing by
-      <a href="https://thetechcontractor.vercel.app/" target="_blank">
-        The Tech Contractor
-      </a>
-    </p>
-  </div>
+      <!-- Brand -->
+      <div class="brand">Malabar Pardhas</div>
+      <div class="divider" aria-hidden="true"></div>
+
+      <!-- Coming Soon -->
+      <h1>Coming Soon</h1>
+
+      <!-- Premium positioning (short + brand establishing) -->
+      <p class="sub">
+        Premium women’s Islamic wear  crafted for faith-first elegance, comfort, and timeless identity.
+      </p>
+
+      <!-- Small premium label -->
+      <div class="pill">
+        <b>Women’s Islamic Wear Brand</b> • Kerala • Offline + Online
+      </div>
+
+      <!-- Minimal CTA (optional, still “coming soon”) -->
+      <div class="actions">
+        <a class="btn primary" href="https://www.instagram.com/malabar.pardhas/" target="_blank" rel="noopener">
+          <!-- instagram icon -->
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4Zm0 7.75A3.05 3.05 0 1 1 12 8a3.05 3.05 0 0 1 0 7.05ZM17.65 6.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0Z"/>
+            <path d="M12 2.2c3.2 0 3.58.01 4.84.07 1.17.05 1.8.25 2.22.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.26.07 1.64.07 4.84s-.01 3.58-.07 4.84c-.05 1.17-.25 1.8-.41 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.26.06-1.64.07-4.84.07s-3.58-.01-4.84-.07c-1.17-.05-1.8-.25-2.22-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.05-.41-2.22C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.84c.05-1.17.25-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41C8.42 2.21 8.8 2.2 12 2.2Zm0-1.7C8.76.5 8.36.51 7.1.57 5.84.63 4.98.84 4.28 1.12c-.72.28-1.33.66-1.94 1.27-.61.61-.99 1.22-1.27 1.94C.84 4.98.63 5.84.57 7.1.51 8.36.5 8.76.5 12c0 3.24.01 3.64.07 4.9.06 1.26.27 2.12.55 2.82.28.72.66 1.33 1.27 1.94.61.61 1.22.99 1.94 1.27.7.28 1.56.49 2.82.55 1.26.06 1.66.07 4.9.07 3.24 0 3.64-.01 4.9-.07 1.26-.06 2.12-.27 2.82-.55.72-.28 1.33-.66 1.94-1.27.61-.61.99-1.22 1.27-1.94.28-.7.49-1.56.55-2.82.06-1.26.07-1.66.07-4.9 0-3.24-.01-3.64-.07-4.9-.06-1.26-.27-2.12-.55-2.82-.28-.72-.66-1.33-1.27-1.94-.61-.61-1.22-.99-1.94-1.27-.7-.28-1.56-.49-2.82-.55C15.64.51 15.24.5 12 .5Z"/>
+          </svg>
+          Follow on Instagram
+        </a>
+
+        <a class="btn ghost" href="https://wa.me/919846302871?text=Assalamu%20Alaikum,%20I%20would%20like%20to%20get%20updates%20on%20your%20launch.%20Please%20notify%20me." target="_blank" rel="noopener">
+          <!-- whatsapp icon -->
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.52 3.48A11.86 11.86 0 0 0 12.03 0C5.45 0 .12 5.33.12 11.9c0 2.1.55 4.15 1.6 5.97L0 24l6.33-1.66a11.88 11.88 0 0 0 5.7 1.45h.01c6.58 0 11.91-5.33 11.91-11.9 0-3.18-1.24-6.17-3.43-8.41ZM12.03 21.2h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.21-3.76.99 1-3.66-.23-.38a9.85 9.85 0 0 1-1.53-5.26c0-5.44 4.44-9.87 9.9-9.87a9.83 9.83 0 0 1 6.99 2.89 9.82 9.82 0 0 1 2.9 6.98c0 5.44-4.43 9.87-9.85 9.87Zm5.73-7.84c-.31-.16-1.82-.9-2.1-1-.28-.1-.48-.16-.68.16-.2.31-.78 1-.96 1.2-.18.2-.36.23-.67.08-.31-.16-1.31-.48-2.49-1.54-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.14-.64.14-.14.31-.36.46-.54.16-.18.2-.31.31-.52.1-.2.05-.39-.03-.54-.08-.16-.68-1.63-.93-2.23-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.54.08-.82.39-.28.31-1.08 1.06-1.08 2.58s1.1 2.99 1.25 3.2c.16.2 2.17 3.3 5.25 4.63.73.31 1.3.5 1.74.64.73.23 1.39.2 1.92.12.59-.09 1.82-.74 2.08-1.45.26-.71.26-1.32.18-1.45-.08-.13-.28-.2-.59-.36Z"/>
+          </svg>
+          Get Launch Updates
+        </a>
+      </div>
+
+      <!-- Credit (kept like your original, but premium) -->
+      <div class="credit">
+        Digital Infrastructure by
+        <a href="https://thetechcontractor.vercel.app/" target="_blank" rel="noopener">The Tech Contractor</a>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
+
