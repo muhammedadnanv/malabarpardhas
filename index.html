@@ -41,13 +41,15 @@
       --text:#F6EEE6;
       --muted: rgba(246,238,230,.72);
       --border: rgba(215,191,163,.18);
-      --glass: rgba(255,255,255,.06);
       --shadow: 0 30px 110px rgba(0,0,0,.55);
       --radius: 26px;
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%; margin:0}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; margin:0; }
+    img{ max-width:100%; display:block; }
+    a{ -webkit-tap-highlight-color: transparent; }
+    svg{ flex:0 0 auto; }
 
     body{
       font-family: Inter, system-ui, -apple-system, sans-serif;
@@ -58,8 +60,8 @@
         linear-gradient(180deg, var(--bg), var(--bg2));
       display:grid;
       place-items:center;
-      padding:24px;
-      overflow:hidden;
+      padding: clamp(16px, 3vw, 28px);
+      overflow-x:hidden;
     }
 
     /* soft luxury grain */
@@ -78,8 +80,8 @@
     /* floating glow ornaments */
     .orb{
       position:fixed;
-      width:520px;
-      height:520px;
+      width: min(520px, 80vw);
+      height: min(520px, 80vw);
       border-radius:999px;
       background: radial-gradient(circle, rgba(189,155,116,.18), transparent 55%);
       filter: blur(6px);
@@ -102,10 +104,11 @@
       background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.03));
       backdrop-filter: blur(12px);
       box-shadow: var(--shadow);
-      padding: clamp(26px, 4vw, 44px);
+      padding: clamp(22px, 4.2vw, 44px);
       text-align:center;
       position:relative;
       animation: fadeUp .85s ease both;
+      overflow:hidden;
     }
 
     .card::after{
@@ -124,13 +127,13 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:16px;
+      gap:14px;
     }
 
     .logoWrap{
-      width:106px;
-      height:106px;
-      border-radius:24px;
+      width: clamp(86px, 18vw, 106px);
+      height: clamp(86px, 18vw, 106px);
+      border-radius: 24px;
       border:1px solid rgba(215,191,163,.22);
       background: rgba(0,0,0,.18);
       display:grid;
@@ -142,7 +145,7 @@
       width:100%;
       height:100%;
       object-fit:contain;
-      padding:12px;
+      padding: 12px;
       filter: drop-shadow(0 10px 26px rgba(0,0,0,.35));
     }
 
@@ -154,6 +157,8 @@
       font-weight:600;
       font-size: 16px;
       margin-top:2px;
+      padding: 0 8px;
+      word-break: break-word;
     }
 
     .divider{
@@ -169,7 +174,7 @@
       font-weight:600;
       letter-spacing:.22em;
       text-transform:uppercase;
-      font-size: clamp(28px, 4vw, 44px);
+      font-size: clamp(26px, 5vw, 44px);
       color: var(--goldSoft);
       line-height:1.15;
     }
@@ -178,13 +183,15 @@
       margin:0;
       max-width: 56ch;
       color: var(--muted);
-      font-size: 14.5px;
+      font-size: clamp(13.5px, 1.9vw, 14.5px);
       line-height: 1.75;
+      padding: 0 6px;
     }
 
     .pill{
       display:inline-flex;
       align-items:center;
+      justify-content:center;
       gap:10px;
       padding:10px 14px;
       border-radius:999px;
@@ -193,6 +200,9 @@
       color: rgba(246,238,230,.78);
       font-size: 12.5px;
       letter-spacing:.02em;
+      max-width: 100%;
+      flex-wrap: wrap;
+      text-align:center;
     }
     .pill b{ color: var(--goldSoft); font-weight:700; }
 
@@ -202,6 +212,7 @@
       gap:12px;
       justify-content:center;
       margin-top: 10px;
+      width: 100%;
     }
 
     .btn{
@@ -219,8 +230,13 @@
       transition: transform .18s ease, background .18s ease, border-color .18s ease;
       user-select:none;
       white-space:nowrap;
+      min-height: 44px; /* mobile-friendly tap target */
     }
     .btn:hover{ transform: translateY(-1px); }
+    .btn:focus-visible{
+      outline: 2px solid rgba(215,191,163,.55);
+      outline-offset: 3px;
+    }
 
     .btn.primary{
       background: linear-gradient(180deg, rgba(189,155,116,.96), rgba(189,155,116,.78));
@@ -232,7 +248,7 @@
       color: var(--text);
     }
 
-    .btn svg{width:16px; height:16px}
+    .btn svg{ width:16px; height:16px; }
 
     .credit{
       margin-top: 18px;
@@ -240,6 +256,7 @@
       border-top:1px solid rgba(215,191,163,.14);
       color: rgba(246,238,230,.65);
       font-size: 12.5px;
+      width:100%;
     }
     .credit a{
       color: var(--gold);
@@ -251,6 +268,35 @@
     @keyframes fadeUp{
       from{opacity:0; transform:translateY(14px)}
       to{opacity:1; transform:translateY(0)}
+    }
+
+    /* =============================== */
+    /* Mobile & Small Screen Tweaks    */
+    /* =============================== */
+    @media (max-width: 560px){
+      .card{ border-radius: 22px; }
+      .divider{ width: 92px; }
+
+      .actions{
+        gap:10px;
+      }
+
+      /* Make buttons full-width on mobile for easier tapping */
+      .btn{
+        width: 100%;
+        max-width: 440px;
+        justify-content:center;
+      }
+
+      /* Reduce letter spacing slightly so headings don’t overflow */
+      h1{ letter-spacing: .16em; }
+      .brand{ letter-spacing: .14em; }
+    }
+
+    /* Reduce motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce){
+      .orb, .card{ animation: none !important; }
+      .btn{ transition: none !important; }
     }
   </style>
 </head>
@@ -273,9 +319,9 @@
       <!-- Coming Soon -->
       <h1>Coming Soon</h1>
 
-      <!-- Premium positioning (short + brand establishing) -->
+      <!-- Premium positioning -->
       <p class="sub">
-        Premium women’s Islamic wear  crafted for faith-first elegance, comfort, and timeless identity.
+        Premium women’s Islamic wear crafted for faith-first elegance, comfort, and timeless identity.
       </p>
 
       <!-- Small premium label -->
@@ -283,10 +329,9 @@
         <b>Women’s Islamic Wear Brand</b> in Edappally | Ponnani | Aluva | Mattancherry
       </div>
 
-      <!-- Minimal CTA (optional, still “coming soon”) -->
+      <!-- CTA -->
       <div class="actions">
         <a class="btn primary" href="https://www.instagram.com/malabar.pardhas/" target="_blank" rel="noopener">
-          <!-- instagram icon -->
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4Zm0 7.75A3.05 3.05 0 1 1 12 8a3.05 3.05 0 0 1 0 7.05ZM17.65 6.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0Z"/>
             <path d="M12 2.2c3.2 0 3.58.01 4.84.07 1.17.05 1.8.25 2.22.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.26.07 1.64.07 4.84s-.01 3.58-.07 4.84c-.05 1.17-.25 1.8-.41 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.26.06-1.64.07-4.84.07s-3.58-.01-4.84-.07c-1.17-.05-1.8-.25-2.22-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.05-.41-2.22C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.84c.05-1.17.25-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41C8.42 2.21 8.8 2.2 12 2.2Zm0-1.7C8.76.5 8.36.51 7.1.57 5.84.63 4.98.84 4.28 1.12c-.72.28-1.33.66-1.94 1.27-.61.61-.99 1.22-1.27 1.94C.84 4.98.63 5.84.57 7.1.51 8.36.5 8.76.5 12c0 3.24.01 3.64.07 4.9.06 1.26.27 2.12.55 2.82.28.72.66 1.33 1.27 1.94.61.61 1.22.99 1.94 1.27.7.28 1.56.49 2.82.55 1.26.06 1.66.07 4.9.07 3.24 0 3.64-.01 4.9-.07 1.26-.06 2.12-.27 2.82-.55.72-.28 1.33-.66 1.94-1.27.61-.61.99-1.22 1.27-1.94.28-.7.49-1.56.55-2.82.06-1.26.07-1.66.07-4.9 0-3.24-.01-3.64-.07-4.9-.06-1.26-.27-2.12-.55-2.82-.28-.72-.66-1.33-1.27-1.94-.61-.61-1.22-.99-1.94-1.27-.7-.28-1.56-.49-2.82-.55C15.64.51 15.24.5 12 .5Z"/>
@@ -295,22 +340,20 @@
         </a>
 
         <a class="btn ghost" href="https://whatsapp.com/channel/0029VbCpf0H2f3EP8lj7z522" target="_blank" rel="noopener">
-          <!-- whatsapp icon -->
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M20.52 3.48A11.86 11.86 0 0 0 12.03 0C5.45 0 .12 5.33.12 11.9c0 2.1.55 4.15 1.6 5.97L0 24l6.33-1.66a11.88 11.88 0 0 0 5.7 1.45h.01c6.58 0 11.91-5.33 11.91-11.9 0-3.18-1.24-6.17-3.43-8.41ZM12.03 21.2h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.21-3.76.99 1-3.66-.23-.38a9.85 9.85 0 0 1-1.53-5.26c0-5.44 4.44-9.87 9.9-9.87a9.83 9.83 0 0 1 6.99 2.89 9.82 9.82 0 0 1 2.9 6.98c0 5.44-4.43 9.87-9.85 9.87Zm5.73-7.84c-.31-.16-1.82-.9-2.1-1-.28-.1-.48-.16-.68.16-.2.31-.78 1-.96 1.2-.18.2-.36.23-.67.08-.31-.16-1.31-.48-2.49-1.54-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.14-.64.14-.14.31-.36.46-.54.16-.18.2-.31.31-.52.1-.2.05-.39-.03-.54-.08-.16-.68-1.63-.93-2.23-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.54.08-.82.39-.28.31-1.08 1.06-1.08 2.58s1.1 2.99 1.25 3.2c.16.2 2.17 3.3 5.25 4.63.73.31 1.3.5 1.74.64.73.23 1.39.2 1.92.12.59-.09 1.82-.74 2.08-1.45.26-.71.26-1.32.18-1.45-.08-.13-.28-.2-.59-.36Z"/>
           </svg>
           Get Launch Updates
         </a>
+
         <a class="btn ghost" href="https://api.whatsapp.com/send/?phone=919846302871" target="_blank" rel="noopener">
-          <!-- whatsapp icon -->
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M20.52 3.48A11.86 11.86 0 0 0 12.03 0C5.45 0 .12 5.33.12 11.9c0 2.1.55 4.15 1.6 5.97L0 24l6.33-1.66a11.88 11.88 0 0 0 5.7 1.45h.01c6.58 0 11.91-5.33 11.91-11.9 0-3.18-1.24-6.17-3.43-8.41ZM12.03 21.2h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.21-3.76.99 1-3.66-.23-.38a9.85 9.85 0 0 1-1.53-5.26c0-5.44 4.44-9.87 9.9-9.87a9.83 9.83 0 0 1 6.99 2.89 9.82 9.82 0 0 1 2.9 6.98c0 5.44-4.43 9.87-9.85 9.87Zm5.73-7.84c-.31-.16-1.82-.9-2.1-1-.28-.1-.48-.16-.68.16-.2.31-.78 1-.96 1.2-.18.2-.36.23-.67.08-.31-.16-1.31-.48-2.49-1.54-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.14-.64.14-.14.31-.36.46-.54.16-.18.2-.31.31-.52.1-.2.05-.39-.03-.54-.08-.16-.68-1.63-.93-2.23-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.54.08-.82.39-.28.31-1.08 1.06-1.08 2.58s1.1 2.99 1.25 3.2c.16.2 2.17 3.3 5.25 4.63.73.31 1.3.5 1.74.64.73.23 1.39.2 1.92.12.59-.09 1.82-.74 2.08-1.45.26-.71.26-1.32.18-1.45-.08-.13-.28-.2-.59-.36Z"/>
           </svg>
-          Contact us 
+          Contact us
         </a>
       </div>
 
-      <!-- Credit (kept like your original, but premium) -->
       <div class="credit">
         Digital Infrastructure by
         <a href="https://thetechcontractor.vercel.app/" target="_blank" rel="noopener">The Tech Contractor</a>
@@ -319,4 +362,3 @@
   </main>
 </body>
 </html>
-
